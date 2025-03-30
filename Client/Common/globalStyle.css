@@ -1,0 +1,19 @@
+:root {
+  --softRed: #f1453c;
+}
+.alert {
+  position: absolute;
+  min-height: 70px;
+  background-color: var(--softRed);
+  width: 200px;
+  top: 30px;
+  border-radius: 10px;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-wrap: wrap;
+  color: white;
+  font-size: 20px;
+  padding: 10px;
+}

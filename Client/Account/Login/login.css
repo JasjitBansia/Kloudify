@@ -1,0 +1,10 @@
+.container {
+  height: 400px;
+}
+input {
+  margin-bottom: 30px;
+}
+
+#submit {
+  margin-top: 15px;
+}
