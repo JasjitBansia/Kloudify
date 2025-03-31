@@ -1,3 +1,5 @@
+@import "../Common/globalStyle.css";
+@import "../Shared/accountPageStyle.css";
 .container {
   height: 400px;
 }
@@ -5,6 +7,6 @@ input {
   margin-bottom: 30px;
 }
 
-#submit {
+.submit {
   margin-top: 15px;
 }

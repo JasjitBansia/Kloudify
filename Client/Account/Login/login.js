@@ -1,4 +1,4 @@
-let button = document.getElementById("submit");
+let button = document.querySelector(".submit");
 function alertMessage(message) {
   let alertElement = document.createElement("div");
   alertElement.className = "alert";

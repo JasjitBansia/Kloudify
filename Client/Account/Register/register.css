@@ -1,3 +1,5 @@
+@import "../Common/globalStyle.css";
+@import "../Shared/accountPageStyle.css";
 .container {
   height: 500px;
 }
@@ -5,6 +7,23 @@ input {
   margin-bottom: 30px;
 }
 
-#submit {
-  margin-top: 15px;
+.submit {
+  margin-top: -12%;
+}
+.acknowledgements {
+  display: flex;
+  color: var(--magenta);
+  align-items: center;
+  margin-top: -12%;
+  margin-left: 7%;
+}
+.acknowledgements span {
+  margin-top: -0.9%;
+  margin-left: 1%;
+}
+.acknowledgements span a {
+  color: var(--darkPurple);
+}
+#acknowledgements {
+  outline: none;
 }

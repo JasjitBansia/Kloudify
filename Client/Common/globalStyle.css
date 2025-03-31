@@ -1,5 +1,20 @@
 :root {
   --softRed: #f1453c;
+  --purple: #bc7fe6;
+  --magenta: #c61cfa;
+  --lightMagenta: rgb(235, 172, 235);
+  --darkPurple: #9704c4;
+}
+html {
+  height: 100%;
+  background: linear-gradient(to bottom, var(--purple), white);
+}
+body {
+  font-family: Georgia, "Times New Roman", Times, serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100%;
 }
 .alert {
   position: absolute;
@@ -16,4 +31,9 @@
   color: white;
   font-size: 20px;
   padding: 10px;
+}
+button:disabled {
+  transition: 0.2s;
+  opacity: 0.5;
+  pointer-events: none;
 }
