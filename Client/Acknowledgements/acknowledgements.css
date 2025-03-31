@@ -3,3 +3,19 @@ body {
   font-size: 20px;
   color: var(--magenta);
 }
+h1 {
+  position: absolute;
+  top: 5%;
+}
+.container {
+  font-size: 30px;
+  position: absolute;
+  top: 2%;
+  left: 30px;
+  margin-top: 10%;
+  padding: 10px;
+}
+.container p {
+  margin-bottom: 100px;
+  text-align: left;
+}

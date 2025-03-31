@@ -4,6 +4,7 @@
   --magenta: #c61cfa;
   --lightMagenta: rgb(235, 172, 235);
   --darkPurple: #9704c4;
+  --softGreen: rgb(59, 192, 59);
 }
 html {
   height: 100%;
@@ -19,7 +20,6 @@ body {
 .alert {
   position: absolute;
   min-height: 70px;
-  background-color: var(--softRed);
   width: 200px;
   top: 30px;
   border-radius: 10px;
@@ -32,6 +32,7 @@ body {
   font-size: 20px;
   padding: 10px;
 }
+
 button:disabled {
   transition: 0.2s;
   opacity: 0.5;

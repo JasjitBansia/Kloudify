@@ -10,23 +10,26 @@
   <body>
     <div class="container">
       <h2 id="title">REGISTER</h2>
-      <input type="text" id="username" placeholder="Username" />
-      <input type="password" id="password" placeholder="Password" />
-      <input
-        type="password"
-        id="passwordConfirm"
-        placeholder="Retype Password"
-      />
-      <div class="acknowledgements">
-        <input type="checkbox" id="acknowledgements" />
-        <span>
-          I agree to these
-          <a href="https://www.google.com">acknowledgements.</a></span
-        >
+      <div class="inputs">
+        <input type="text" id="username" placeholder="Username" />
+        <input type="password" id="password" placeholder="Password" />
+        <input
+          type="password"
+          id="passwordConfirm"
+          placeholder="Retype Password"
+        />
+        <div class="acknowledgements">
+          <input type="checkbox" id="acknowledgements" />
+          <span>
+            I agree to these
+            <a href="/acknowledgements">acknowledgements.</a></span
+          >
+        </div>
       </div>
       <br />
       <button class="submit" disabled>Register</button>
     </div>
   </body>
   <script src="register.js"></script>
+  <script src="../../Common/globalFunctions.js"></script>
 </html>

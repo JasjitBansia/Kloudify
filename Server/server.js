@@ -1,28 +1,17 @@
 const express = require("express");
 const dotenv = require("dotenv").config();
-const { MongoClient } = require("mongodb");
-const mongoClient = new MongoClient(process.env.MONGODB_CONNECTION_URI);
 const app = express();
 const port = 6060;
 const path = require("path");
 const accountRoutes = require("./Routes/accountRoutes");
+require("./db.js").connect();
 app.use(express.json());
-
 app.use("/account", accountRoutes);
 app.use(express.static(path.join(__dirname, "../Client")));
 app.use(express.static(path.join(__dirname, "../Client/Acknowledgements")));
 app.use(express.static(path.join(__dirname, "../Client/Account")));
 app.use(express.static(path.join(__dirname, "../Client/Account/Login")));
 app.use(express.static(path.join(__dirname, "../Client/Account/Register")));
-
-async function connectDB() {
-  await mongoClient.connect();
-  console.log("Connected to DB");
-}
-connectDB();
-const db = mongoClient.db("users");
-
-module.exports = { db };
 
 app.get("/", (req, res) => {
   res.send("Hello World!");
