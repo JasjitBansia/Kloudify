@@ -6,7 +6,19 @@
 input {
   margin-bottom: 30px;
 }
-
+#password {
+  margin-bottom: 7px;
+}
 .submit {
   margin-top: 15px;
+}
+#newUser {
+  display: flex;
+  justify-content: right;
+  margin-right: 40px;
+  color: var(--magenta);
+}
+#newUser a {
+  text-decoration: underline;
+  color: var(--darkPurple);
 }

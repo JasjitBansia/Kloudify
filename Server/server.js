@@ -8,6 +8,7 @@ require("./db.js").connect();
 app.use(express.json());
 app.use("/account", accountRoutes);
 app.use(express.static(path.join(__dirname, "../Client")));
+app.use(express.static(path.join(__dirname, "../Client/404")));
 app.use(express.static(path.join(__dirname, "../Client/Acknowledgements")));
 app.use(express.static(path.join(__dirname, "../Client/Account")));
 app.use(express.static(path.join(__dirname, "../Client/Account/Login")));
@@ -29,6 +30,10 @@ app.get("/acknowledgements", (req, res) => {
   res.sendFile(
     path.join(__dirname, "../Client/Acknowledgements/acknowledgements.html")
   );
+});
+
+app.get("*", (req, res) => {
+  res.sendFile(path.join(__dirname, "../Client/404/404.html"));
 });
 app.listen(port, () => {
   console.log(`Listening on port ${port}`);

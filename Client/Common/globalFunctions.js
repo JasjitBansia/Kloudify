@@ -13,7 +13,7 @@ function alertMessage(message, type) {
   document.body.appendChild(alertElement);
   setTimeout(() => {
     alertElement.style.opacity = "1";
-  }, 300);
+  }, 100);
   setTimeout(() => {
     alertElement.style.opacity = "0";
     setTimeout(() => {

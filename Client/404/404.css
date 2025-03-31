@@ -1,0 +1,5 @@
+@import "../Common/globalStyle.css";
+img {
+  width: 750px;
+  border-radius: 10px;
+}

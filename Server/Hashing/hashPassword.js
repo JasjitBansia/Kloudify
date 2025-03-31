@@ -1,6 +1,10 @@
 const bcrypt = require("bcrypt");
 async function hashPassword(plainTextPassword) {
-  let hash = await bcrypt.hash(plainTextPassword, 5);
-  return hash;
+  try {
+    let hash = await bcrypt.hash(plainTextPassword, 5);
+    return hash;
+  } catch (err) {
+    console.log(err);
+  }
 }
 module.exports = { hashPassword };

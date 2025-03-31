@@ -49,14 +49,14 @@ inputs.addEventListener("change", function (event) {
 });
 
 buttonElement.addEventListener("click", async function (event) {
-  let req = await fetch("/account/register/", {
+  let req = await fetch("/account/register", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
     },
     body: JSON.stringify({
-      username: username.value,
-      password: password.value,
+      username: username.value.trim(),
+      password: password.value.trim(),
     }),
   });
   let res = await req.text();
@@ -76,5 +76,6 @@ buttonElement.addEventListener("click", async function (event) {
     alertMessage(res, "alert");
   } else {
     alertMessage("Server error", "alert");
+    console.log(res);
   }
 });

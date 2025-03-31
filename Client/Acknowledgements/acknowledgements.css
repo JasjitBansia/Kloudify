@@ -1,21 +1,78 @@
 @import "../Common/globalStyle.css";
+
 body {
   font-size: 20px;
   color: var(--magenta);
+  padding: 20px;
 }
+
 h1 {
   position: absolute;
   top: 5%;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 2rem;
 }
+
 .container {
   font-size: 30px;
   position: absolute;
   top: 2%;
   left: 30px;
   margin-top: 10%;
-  padding: 10px;
+  padding: 20px;
+  max-width: 90%;
 }
+
 .container p {
-  margin-bottom: 100px;
+  margin-bottom: 50px;
   text-align: left;
+}
+
+@media (max-width: 768px) {
+  body {
+    font-size: 16px; /* Reduce base font size */
+    padding: 15px;
+  }
+
+  h1 {
+    font-size: 1.5rem;
+    top: 2%;
+  }
+
+  .container {
+    font-size: 20px;
+    top: 1%;
+    left: 15px;
+    margin-top: 15%;
+    padding: 15px;
+  }
+
+  .container p {
+    margin-bottom: 30px;
+  }
+}
+
+@media (max-width: 480px) {
+  body {
+    font-size: 14px;
+    padding: 10px;
+  }
+
+  h1 {
+    font-size: 1.2rem;
+    top: 1%;
+  }
+
+  .container {
+    font-size: 16px;
+    top: 0.5%;
+    left: 10px;
+    margin-top: 20%;
+    padding: 10px;
+  }
+
+  .container p {
+    margin-bottom: 20px;
+  }
 }
