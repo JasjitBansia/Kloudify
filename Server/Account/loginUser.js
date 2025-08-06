@@ -1,4 +1,6 @@
 const { db } = require("../db.js");
+const jwt = require("jsonwebtoken");
+const { generateJWT } = require("./generateJWT.js");
 let collection = db.collection("userData");
 let { comparePassword } = require("../Hashing/comparePassword.js");
 async function loginUser(req, res) {
@@ -18,6 +20,7 @@ async function loginUser(req, res) {
     if (comparedPassword === false) {
       return res.status(401).send("Invalid credentials entered");
     } else {
+      generateJWT(user.username, res);
       return res.status(200).send("User logged in");
     }
   } catch (err) {

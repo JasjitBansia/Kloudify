@@ -30,7 +30,7 @@ function formValidation() {
       return false;
     }
     if (username.includes(" ") || password.includes(" ")) {
-      alertMessage("Input data should not contain spaces");
+      alertMessage("Input data should not contain spaces", "alert");
       return false;
     }
     return true;
@@ -63,16 +63,12 @@ buttonElement.addEventListener("click", async function (event) {
   if (req.status === 200) {
     alertMessage(res, "successAlert");
     buttonElement.disabled = true;
-    document.cookie = `username=${usernameElement.value};expires=${new Date(
-      Date.now() + 30 * 24 * 60 * 60 * 1000
-    )}`;
-    document.cookie = `password=${passwordElement.value};expires=${new Date(
-      Date.now() + 30 * 24 * 60 * 60 * 1000
-    )}`;
     setTimeout(() => {
-      window.location.href = "/";
+      window.location.href = "/app";
     }, 2000);
   } else if (req.status === 409) {
+    alertMessage(res, "alert");
+  } else if (req.status === 403) {
     alertMessage(res, "alert");
   } else {
     alertMessage("Server error", "alert");
