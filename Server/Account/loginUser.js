@@ -1,8 +1,7 @@
 const { db } = require("../db.js");
-const jwt = require("jsonwebtoken");
 const { generateJWT } = require("./generateJWT.js");
 let collection = db.collection("userData");
-let { comparePassword } = require("../Hashing/comparePassword.js");
+let { comparePassword } = require("./Hashing/comparePassword.js");
 async function loginUser(req, res) {
   let receivedUsername = req.body.username;
   let receivedPassword = req.body.password;

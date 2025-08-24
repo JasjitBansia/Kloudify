@@ -1,3 +1,9 @@
+let softRed = window
+  .getComputedStyle(document.documentElement)
+  .getPropertyValue("--softRed");
+let softGreen = window
+  .getComputedStyle(document.documentElement)
+  .getPropertyValue("--softGreen");
 function alertMessage(message, type) {
   let alertElement = document.createElement("div");
   alertElement.classList.add("alert");

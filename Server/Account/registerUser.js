@@ -1,6 +1,6 @@
 const { db } = require("../db.js");
 const { generateJWT } = require("./generateJWT.js");
-const { hashPassword } = require("../Hashing/hashPassword.js");
+const { hashPassword } = require("./Hashing/hashPassword.js");
 let collection = db.collection("userData");
 let userCountCollection = db.collection("userCount");
 async function registerUser(req, res) {
@@ -9,7 +9,7 @@ async function registerUser(req, res) {
   let receivedUsername = req.body.username;
   let receivedPassword = req.body.password;
   try {
-    if (userCount < 5) {
+    if (userCount < 15) {
       let userExists = await collection.findOne({
         username: receivedUsername,
       });

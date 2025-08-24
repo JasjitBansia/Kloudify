@@ -2,12 +2,6 @@ let buttonElement = document.querySelector(".submit");
 let usernameElement = document.querySelector("#username");
 let passwordElement = document.querySelector("#password");
 let inputs = document.querySelector(".inputs");
-let softRed = window
-  .getComputedStyle(document.documentElement)
-  .getPropertyValue("--softRed");
-let softGreen = window
-  .getComputedStyle(document.documentElement)
-  .getPropertyValue("--softGreen");
 let acknowledgementCheckbox = document.querySelector("#acknowledgements");
 let confirmedPasswordElement = document.querySelector("#passwordConfirm");
 
