@@ -1,4 +1,9 @@
 @import "../Common/globalStyle.css";
+@media (max-width: 768px) {
+  .fileNameClass {
+    margin-bottom: 35% !important;
+  }
+}
 #logout {
   top: 2%;
   right: 0.5%;
@@ -13,8 +18,44 @@
   color: white;
   background-color: var(--softRed);
 }
-.alert {
-  top: 45%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+#uploadArea {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: -30% auto 0;
+}
+#fileInput {
+  display: none;
+}
+#fileInputLabel,
+.uploadElements {
+  color: white;
+  display: flex;
+  font-size: 30px;
+  justify-content: center;
+  align-items: center;
+  border-radius: 10px;
+  height: 60px;
+  width: 230px;
+  background-color: var(--softGreen);
+  border: none;
+}
+.fileNameClass {
+  color: white;
+  font-size: 40px;
+  margin-bottom: 15%;
+  word-break: break-all;
+}
+.uploadActions {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 5px;
+}
+.removeUpload {
+  height: 32px;
+  padding: 3px;
+  width: 32px;
+  background-color: white;
+  border-radius: 5px;
 }

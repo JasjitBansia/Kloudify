@@ -8,6 +8,8 @@ async function registerUser(req, res) {
   let userCount = userDocument.userCount;
   let receivedUsername = req.body.username;
   let receivedPassword = req.body.password;
+  if (receivedUsername === undefined || receivedPassword === undefined)
+    return res.status(403).send("Invalid user info");
   try {
     if (userCount < 15) {
       let userExists = await collection.findOne({
@@ -21,7 +23,7 @@ async function registerUser(req, res) {
           username: receivedUsername,
           password: hashedPassword,
           createdAt: new Date().toLocaleString("en-IN"),
-          allocatedSpaceGB: 75,
+          allocatedSpaceGB: 50,
           lastUserPing: new Date().toLocaleString("en-IN"),
         });
         await userCountCollection.updateOne({}, { $inc: { userCount: 1 } });

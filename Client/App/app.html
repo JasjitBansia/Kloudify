@@ -3,12 +3,23 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Main</title>
+    <title>Dashboard</title>
     <link rel="stylesheet" href="app.css" />
   </head>
   <body>
     <span id="logout">Log out</span>
+    <div id="uploadArea">
+      <input type="file" id="fileInput" />
+      <div class="uploadActions">
+        <label for="fileInput" id="fileInputLabel" class="uploadElements"
+          >Choose file</label
+        >
+        <!-- <button class="uploadElements">hello</button> -->
+      </div>
+    </div>
   </body>
   <script src="app.js"></script>
+  <script src="./Functions/removeSelectedFileLogic.js"></script>
+  <script src="./Functions/uploadFile.js"></script>
   <script src="../Common/globalFunctions.js"></script>
 </html>
