@@ -3,6 +3,7 @@ const cookieParser = require("cookie-parser");
 require("dotenv").config();
 const app = express();
 const port = 6060;
+module.exports = { port };
 const path = require("path");
 const accountRoutes = require("./Routes/accountRoutes");
 const fileRoutes = require("./Routes/fileRoutes.js");

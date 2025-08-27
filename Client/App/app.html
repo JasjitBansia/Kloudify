@@ -5,21 +5,36 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Dashboard</title>
     <link rel="stylesheet" href="app.css" />
+    <link rel="stylesheet" href="../Common/mediaQuery.css">
   </head>
   <body>
-    <span id="logout">Log out</span>
+     <div class="options">
+      <span class="settings"><img id="settingsImage" src="../Assets/settings.png">
+      <div class="settingsContainer" >
+        <ul>
+        <li>One</li>
+        <li>Two</li>
+        <li class="dangerousActions" id="deleteAllFiles"><img src="../Assets/delete-inverted.png">Delete all files</li>
+        <li class="dangerousActions"><img src="../Assets/delete-inverted.png">Delete account</li>
+      </ul>
+    </div>
+      </span>
+            <span id="logout">Log out</span>
+    </div>
+    </div> 
     <div id="uploadArea">
       <input type="file" id="fileInput" />
       <div class="uploadActions">
         <label for="fileInput" id="fileInputLabel" class="uploadElements"
           >Choose file</label
         >
-        <!-- <button class="uploadElements">hello</button> -->
       </div>
     </div>
   </body>
   <script src="app.js"></script>
   <script src="./Functions/removeSelectedFileLogic.js"></script>
   <script src="./Functions/uploadFile.js"></script>
+  <script src="./Functions/getUploadProgress.js"></script>
+  <script src="./Functions/settingsMenu.js"></script>
   <script src="../Common/globalFunctions.js"></script>
 </html>

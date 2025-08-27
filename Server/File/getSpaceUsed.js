@@ -1,11 +1,7 @@
 const fs = require("fs");
 const path = require("path");
-const { db } = require("../db.js");
-const collection = db.collection("userData");
 async function getSpaceUsed(req, res) {
   let username = req.username;
-  let userDocument = await collection.findOne({ username: username });
-  let allocatedSpace = userDocument.allocatedSpaceGB;
   let folderPath = path.join(__dirname, `../../Files/${username}`);
   try {
     let files = fs.readdirSync(folderPath);
@@ -15,17 +11,10 @@ async function getSpaceUsed(req, res) {
       let fileSize = fs.statSync(filePath).size;
       totalSize += fileSize;
     });
-    totalSize = totalSize / 1024 / 1024 / 1024;
-    console.log(totalSize);
-    if (totalSize > allocatedSpace) {
-      return res
-        .status(507)
-        .send("Not enough storage space to upload this file");
-    } else {
-      return res.status(200).send("OK");
-    }
+    return res.status(200).send({ usedSpace: totalSize });
   } catch (e) {
     console.log(e);
+    return res.status(500).send("Error");
   }
 }
 module.exports = { getSpaceUsed };

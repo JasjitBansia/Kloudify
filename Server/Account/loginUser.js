@@ -24,6 +24,7 @@ async function loginUser(req, res) {
     }
   } catch (err) {
     console.log(err);
+    return res.status(500).send("Error");
   }
 }
 module.exports = { loginUser };

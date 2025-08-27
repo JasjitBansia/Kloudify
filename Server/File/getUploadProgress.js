@@ -1,18 +1,16 @@
 const fs = require("fs");
 const path = require("path");
-function fileNameConflict(req, res) {
+async function getUploadProgress(req, res) {
   let fileName = req.headers.filename;
   let username = req.username;
   try {
     let filePath = path.join(__dirname, `../../Files/${username}/${fileName}`);
-    if (fs.existsSync(filePath)) {
-      return res.status(409).send("File with this name already exists");
-    } else {
-      return res.status(200).send("OK");
-    }
+    let fileStat = fs.statSync(filePath);
+    let fileSize = fileStat.size;
+    return res.status(200).send(fileSize.toString());
   } catch (e) {
     console.log(e);
     return res.status(500).send("Error");
   }
 }
-module.exports = { fileNameConflict };
+module.exports = { getUploadProgress };

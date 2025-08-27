@@ -9,7 +9,7 @@
   --softGreen: rgb(59, 192, 59);
 }
 html {
-  height: 100%;
+  height: 100vh;
   background: linear-gradient(to bottom, var(--purple), white);
 }
 body {
@@ -39,4 +39,66 @@ button:disabled {
   transition: 0.2s;
   opacity: 0.5;
   pointer-events: none;
+}
+.confirm {
+  position: absolute;
+  top: 40%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  background-color: white;
+  width: 30vw;
+  height: 40vh;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  border-radius: 10px;
+}
+
+#confirmText {
+  font-size: 30px;
+  margin-bottom: 20px;
+}
+
+.confirm input {
+  border-radius: 10px;
+  font-size: 30px;
+  text-align: center;
+  width: 400px;
+  height: 30px;
+}
+
+.confirmButtons {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+}
+
+.confirmButtons button {
+  height: 50px;
+  width: 100px;
+  margin-top: 15px;
+  font-size: 25px;
+  border: none;
+  border-radius: 10px;
+  transition: 0.3s;
+}
+
+#confirmButton {
+  background-color: var(--softRed);
+  color: white;
+}
+
+#confirmButton:hover {
+  background-color: red;
+}
+
+#cancelButton {
+  background-color: rgb(205, 205, 205);
+}
+
+#cancelButton:hover {
+  background-color: rgb(158, 156, 156);
 }

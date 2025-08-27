@@ -39,6 +39,7 @@ async function registerUser(req, res) {
     }
   } catch (err) {
     console.log(err);
+    return res.status(500).send("Error");
   }
 }
 module.exports = { registerUser };

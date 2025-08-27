@@ -1,23 +1,5 @@
 @import "../Common/globalStyle.css";
-@media (max-width: 768px) {
-  .fileNameClass {
-    margin-bottom: 35% !important;
-  }
-}
-#logout {
-  top: 2%;
-  right: 0.5%;
-  position: absolute;
-  background-color: white;
-  padding: 5px 5px 5px 5px;
-  border-radius: 10px;
-  cursor: pointer;
-  transition: 0.3s;
-}
-#logout:hover {
-  color: white;
-  background-color: var(--softRed);
-}
+
 #uploadArea {
   display: flex;
   flex-direction: column;
@@ -43,8 +25,9 @@
 .fileNameClass {
   color: white;
   font-size: 40px;
+  text-align: center;
   margin-bottom: 15%;
-  word-break: break-all;
+  text-wrap: wrap;
 }
 .uploadActions {
   display: flex;
@@ -58,4 +41,83 @@
   width: 32px;
   background-color: white;
   border-radius: 5px;
+}
+
+#logout {
+  background-color: white;
+  padding: 5px 5px 5px 5px;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+#logout:hover {
+  color: white;
+  background-color: var(--softRed);
+}
+.options {
+  cursor: pointer;
+  position: absolute;
+  display: flex;
+  top: 2%;
+  right: 0.5%;
+  align-items: center;
+  gap: 10px;
+  flex-direction: row;
+}
+.options #settingsImage {
+  padding: 5px 5px 5px 5px;
+  margin-top: 5px;
+  border-radius: 10px;
+  background-color: white;
+  height: 25px;
+  width: 25px;
+}
+.settingsContainer {
+  pointer-events: none;
+  opacity: 0;
+  min-height: 150px;
+  min-width: 150px;
+  position: absolute;
+  right: 17%;
+  border-radius: 10px;
+  display: flex;
+  background-color: white;
+}
+
+.settingsContainer ul {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  margin: 0;
+  padding: 0;
+}
+
+.settingsContainer ul li {
+  flex: 1;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+.settingsContainer ul li:first-child {
+  border-radius: 10px 10px 0px 0px;
+}
+
+.settingsContainer ul li:last-child {
+  border-radius: 0px 0px 10px 10px;
+}
+.dangerousActions {
+  background-color: var(--softRed);
+  color: white;
+  transition: 0.3s;
+}
+.dangerousActions:hover {
+  background-color: red;
+}
+.dangerousActions img {
+  height: 20px;
+  width: 20px;
+  margin-right: 5px;
 }

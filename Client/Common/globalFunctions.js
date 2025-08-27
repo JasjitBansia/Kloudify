@@ -27,3 +27,34 @@ function alertMessage(message, type) {
     }, 300);
   }, 2000);
 }
+function inputConfirmation(confirmText) {
+  //  <div class="confirm">
+  //     <span id="confirmText"></span>
+  //     <input type="text" id="confirmInput">
+  //     <div class="confirmButtons">
+  //       <button id="confirmButton">Confirm</button>
+  //       <button id="cancelButton">Cancel</button>
+  //     </div>
+  //   </div>
+  let confirmDiv = document.createElement("div");
+  confirmDiv.classList.add("confirm");
+  let text = document.createElement("span");
+  text.id = "confirmText";
+  text.innerText = confirmText;
+  confirmDiv.appendChild(text);
+  let input = document.createElement("input");
+  input.id = "confirmInput";
+  confirmDiv.appendChild(input);
+  let confirmButtonsDiv = document.createElement("div");
+  confirmButtonsDiv.classList.add("confirmButtons");
+  let confirmButton = document.createElement("button");
+  confirmButton.id = "confirmButton";
+  confirmButton.innerText = "Confirm";
+  let cancelButton = document.createElement("button");
+  cancelButton.id = "cancelButton";
+  cancelButton.innerText = "Cancel";
+  confirmButtonsDiv.appendChild(confirmButton);
+  confirmButtonsDiv.appendChild(cancelButton);
+  confirmDiv.appendChild(confirmButtonsDiv);
+  document.body.prepend(confirmDiv);
+}
