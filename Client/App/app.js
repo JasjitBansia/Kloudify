@@ -2,6 +2,10 @@ let logOut = document.querySelector("#logout");
 let fileInput = document.querySelector("#fileInput");
 let uploadActions = document.querySelector(".uploadActions");
 let isUploading = false;
+window.onload = function () {
+  sessionStorage.setItem("isUploading", "false");
+  getFilelist();
+};
 logOut.addEventListener("click", async () => {
   try {
     let req = await fetch("/account/logout", { method: "POST" });
@@ -27,16 +31,16 @@ fileInput.addEventListener("change", (e) => {
     let uploadButton = document.createElement("button");
     uploadButton.classList.add("uploadElements");
     uploadButton.innerText = "Upload";
+    uploadButton.id = "uploadButton";
     uploadActions.appendChild(uploadButton);
     let fileNameElement = document.createElement("span");
     fileNameElement.classList.add("fileNameClass");
     document.querySelector("#uploadArea").prepend(fileNameElement);
     fileNameElement.innerText = file.name;
     removeSelectedFileLogic(fileNameElement, fileInput, uploadButton);
-
     uploadButton.addEventListener("click", () => {
-      if (isUploading === false) {
-        isUploading = true;
+      if (sessionStorage.getItem("isUploading") === "false") {
+        sessionStorage.setItem("isUploading", "true");
         uploadFile(file);
       } else {
         alertMessage("A file upload is already in progress", "alert");

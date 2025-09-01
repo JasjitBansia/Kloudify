@@ -27,24 +27,16 @@ function alertMessage(message, type) {
     }, 300);
   }, 2000);
 }
-function inputConfirmation(confirmText) {
-  //  <div class="confirm">
-  //     <span id="confirmText"></span>
-  //     <input type="text" id="confirmInput">
-  //     <div class="confirmButtons">
-  //       <button id="confirmButton">Confirm</button>
-  //       <button id="cancelButton">Cancel</button>
-  //     </div>
-  //   </div>
+function createBasicElements(confirmText) {
+  let backgroundDiv = document.createElement("div");
+  backgroundDiv.classList.add("background");
+  document.body.prepend(backgroundDiv);
   let confirmDiv = document.createElement("div");
   confirmDiv.classList.add("confirm");
   let text = document.createElement("span");
   text.id = "confirmText";
   text.innerText = confirmText;
   confirmDiv.appendChild(text);
-  let input = document.createElement("input");
-  input.id = "confirmInput";
-  confirmDiv.appendChild(input);
   let confirmButtonsDiv = document.createElement("div");
   confirmButtonsDiv.classList.add("confirmButtons");
   let confirmButton = document.createElement("button");
@@ -56,5 +48,42 @@ function inputConfirmation(confirmText) {
   confirmButtonsDiv.appendChild(confirmButton);
   confirmButtonsDiv.appendChild(cancelButton);
   confirmDiv.appendChild(confirmButtonsDiv);
+  cancelButton.addEventListener("click", () => {
+    removeConfirmationWindow();
+  });
+  return { confirmDiv: confirmDiv, confirmButtonsDiv: confirmButtonsDiv };
+}
+function removeConfirmationWindow() {
+  document.querySelector(".confirm").remove();
+  document.querySelector(".background").remove();
+}
+function inputConfirmation(confirmText) {
+  //  <div class="confirm">
+  //     <span id="confirmText"></span>
+  //     <input type="text" id="confirmInput">
+  //     <div class="confirmButtons">
+  //       <button id="confirmButton">Confirm</button>
+  //       <button id="cancelButton">Cancel</button>
+  //     </div>
+  //   </div>
+  let elements = createBasicElements(confirmText);
+  let confirmDiv = elements.confirmDiv;
+  let confirmButtonsDiv = elements.confirmButtonsDiv;
+  let input = document.createElement("input");
+  input.id = "confirmInput";
+  confirmDiv.insertBefore(input, confirmButtonsDiv);
+  document.body.prepend(confirmDiv);
+}
+function buttonConfirmation(confirmText) {
+  //  <div class="confirm">
+  //     <span id="confirmText"></span>
+  //     <input type="text" id="confirmInput">
+  //     <div class="confirmButtons">
+  //       <button id="confirmButton">Confirm</button>
+  //       <button id="cancelButton">Cancel</button>
+  //     </div>
+  //   </div>
+  let elements = createBasicElements(confirmText);
+  let confirmDiv = elements.confirmDiv;
   document.body.prepend(confirmDiv);
 }

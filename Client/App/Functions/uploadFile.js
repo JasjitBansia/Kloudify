@@ -3,7 +3,6 @@ async function uploadFile(file) {
   let partSize = 5 * (1024 * 1024);
   let numberOfParts = Number.parseInt(file.size / partSize);
   let currentPartNumber = 0;
-  let uploadingState = false;
 
   let fileExistsReq = await fetch("/file/fileNameConflict", {
     headers: {
@@ -26,44 +25,38 @@ async function uploadFile(file) {
       });
       let res = await req.text();
       if (req.status === 200) {
-        uploadingState = true;
+        sessionStorage.setItem("isUploading", "true");
         if (res === "File uploaded") {
-          uploadingState = false;
+          sessionStorage.setItem("isUploading", "false");
           document.querySelector(
             ".fileNameClass"
           ).innerText = `${file.name} - Uploading 100%`;
           alertMessage(res, "successAlert");
-          setTimeout(() => {
-            window.location.reload();
-          }, 1500);
+          getFilelist();
+          resetUploadState();
         } else {
-          if (uploadingState === true) {
+          if (sessionStorage.getItem("isUploading") === "true") {
             await getUploadProgress(file);
           }
         }
       } else if (req.status === 507) {
-        uploadingState = false;
+        sessionStorage.setItem("isUploading", "false");
         alertMessage(res, "alert");
-        setTimeout(() => {
-          window.location.reload();
-        }, 2700);
+        resetUploadState();
         break;
       } else {
-        uploadingState = false;
+        sessionStorage.setItem("isUploading", "false");
         alertMessage("Server error", "alert");
+        resetUploadState();
         console.log(res);
-        setTimeout(() => {
-          window.location.reload();
-        }, 1500);
         break;
       }
       currentPartNumber++;
     }
   } else if (fileExistsReq.status === 409) {
     alertMessage(res, "alert");
-    setTimeout(() => {
-      window.location.reload();
-    }, 2200);
+    sessionStorage.setItem("isUploading", "false");
+    resetUploadState();
   } else {
     alert("Server error", "alert");
     console.log(res);

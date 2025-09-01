@@ -10,9 +10,10 @@
 }
 html {
   height: 100vh;
-  background: linear-gradient(to bottom, var(--purple), white);
+  background: linear-gradient(to bottom, var(--purple), white) fixed;
 }
 body {
+  margin: 0px;
   font-family: "Rubik";
   display: flex;
   justify-content: center;
@@ -40,52 +41,6 @@ button:disabled {
   opacity: 0.5;
   pointer-events: none;
 }
-.confirm {
-  position: absolute;
-  top: 40%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-  background-color: white;
-  width: 30vw;
-  height: 40vh;
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-  border-radius: 10px;
-}
-
-#confirmText {
-  font-size: 30px;
-  margin-bottom: 20px;
-}
-
-.confirm input {
-  border-radius: 10px;
-  font-size: 30px;
-  text-align: center;
-  width: 400px;
-  height: 30px;
-}
-
-.confirmButtons {
-  display: flex;
-  justify-content: center;
-  gap: 20px;
-}
-
-.confirmButtons button {
-  height: 50px;
-  width: 100px;
-  margin-top: 15px;
-  font-size: 25px;
-  border: none;
-  border-radius: 10px;
-  transition: 0.3s;
-}
-
 #confirmButton {
   background-color: var(--softRed);
   color: white;
@@ -101,4 +56,56 @@ button:disabled {
 
 #cancelButton:hover {
   background-color: rgb(158, 156, 156);
+}
+
+.confirm {
+  position: absolute;
+  top: 40%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  min-width: 500px;
+  min-height: 250px;
+  background-color: white;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 30px;
+  z-index: 2;
+}
+#confirmText {
+  padding: 15px;
+  font-size: 30px;
+  text-align: center;
+}
+.confirm input {
+  border-radius: 10px;
+  font-size: 30px;
+  width: 400px;
+  height: 30px;
+  margin-top: 10px;
+}
+.confirmButtons {
+  display: flex;
+  flex-direction: row;
+  gap: 15px;
+}
+.confirmButtons button {
+  height: 50px;
+  width: 100px;
+  border-radius: 10px;
+  font-size: 25px;
+  border: none;
+  transition: 0.3s;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+.background {
+  position: absolute;
+  height: 100vh;
+  width: 100vw;
+  background: rgb(0, 0, 0);
+  opacity: 0.9;
+  z-index: 1;
 }

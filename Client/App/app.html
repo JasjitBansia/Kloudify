@@ -5,23 +5,32 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Dashboard</title>
     <link rel="stylesheet" href="app.css" />
-    <link rel="stylesheet" href="../Common/mediaQuery.css">
+    <link rel="stylesheet" href="../Common/mediaQuery.css" />
   </head>
+
   <body>
-     <div class="options">
-      <span class="settings"><img id="settingsImage" src="../Assets/settings.png">
-      <div class="settingsContainer" >
-        <ul>
-        <li>One</li>
-        <li>Two</li>
-        <li class="dangerousActions" id="deleteAllFiles"><img src="../Assets/delete-inverted.png">Delete all files</li>
-        <li class="dangerousActions"><img src="../Assets/delete-inverted.png">Delete account</li>
-      </ul>
-    </div>
+    <div class="options">
+      <span class="settings"
+        ><img id="settingsImage" src="../Assets/settings.png" />
+        <div class="settingsContainer">
+          <ul>
+            <li>One</li>
+            <li>Two</li>
+            <li class="dangerousActions" id="deleteAllFiles">
+              <img src="../Assets/files.png" id="deleteFilesImage" />Delete all
+              files
+            </li>
+            <li class="dangerousActions">
+              <img
+                src="../Assets/delete-inverted.png"
+                id="deleteAccountImage"
+              />Delete account
+            </li>
+          </ul>
+        </div>
       </span>
-            <span id="logout">Log out</span>
+      <span id="logout">Log out</span>
     </div>
-    </div> 
     <div id="uploadArea">
       <input type="file" id="fileInput" />
       <div class="uploadActions">
@@ -30,11 +39,18 @@
         >
       </div>
     </div>
+    <div class="filesContainer">
+      <span id="fileHeading">FILES</span>
+      <div class="fileList"></div>
+    </div>
   </body>
   <script src="app.js"></script>
   <script src="./Functions/removeSelectedFileLogic.js"></script>
   <script src="./Functions/uploadFile.js"></script>
   <script src="./Functions/getUploadProgress.js"></script>
+  <script src="./Functions/getFileList.js"></script>
   <script src="./Functions/settingsMenu.js"></script>
+  <script src="./Functions/deleteAllFiles.js"></script>
+  <script src="./Functions/resetUploadState.js"></script>
   <script src="../Common/globalFunctions.js"></script>
 </html>

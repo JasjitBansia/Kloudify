@@ -55,10 +55,10 @@ async function getUploadProgress(file) {
     uploadedDataType = "B";
   }
 
+  if (fileName.length > 10) {
+    fileName = fileName.slice(0, 10) + "...";
+  }
   if (screenWidth < 768) {
-    if (fileName.length > 10) {
-      fileName = fileName.slice(0, 10) + "...";
-    }
     document.querySelector(".fileNameClass").style.fontSize = "30px";
   }
   document.querySelector(

@@ -1,18 +1,14 @@
 @media (max-width: 768px) {
-  .fileNameClass {
-    margin-bottom: 35%;
-  }
   .confirm {
-    width: 80vw;
-    height: 50vh;
+    min-width: 400px;
   }
-  .confirm input {
-    width: 250px;
-    height: 30px;
-    top: 200px;
-    left: 40px;
+  .filesContainer {
+    top: 70%;
   }
-  .confirmButtons {
-    left: 60px;
+  .file {
+    width: 90vw;
+    min-height: 100px;
+    margin-bottom: 70px;
+    font-size: 30px;
   }
 }

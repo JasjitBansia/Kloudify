@@ -12,6 +12,7 @@
 #fileInputLabel,
 .uploadElements {
   color: white;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
   display: flex;
   font-size: 30px;
   justify-content: center;
@@ -26,7 +27,7 @@
   color: white;
   font-size: 40px;
   text-align: center;
-  margin-bottom: 15%;
+  margin-bottom: 10%;
   text-wrap: wrap;
 }
 .uploadActions {
@@ -38,6 +39,7 @@
 .removeUpload {
   height: 32px;
   padding: 3px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
   width: 32px;
   background-color: white;
   border-radius: 5px;
@@ -119,5 +121,46 @@
 .dangerousActions img {
   height: 20px;
   width: 20px;
+}
+#deleteAccountImage {
   margin-right: 5px;
+}
+#deleteFilesImage {
+  margin-right: 10px;
+}
+.filesContainer {
+  position: absolute;
+  display: flex;
+  top: 35%;
+  left: 50%;
+  transform: translateX(-50%);
+  justify-self: center;
+  align-items: center;
+  min-height: 100vh * 5;
+  min-width: 400px;
+  flex-direction: column;
+}
+
+.filesContainer #fileHeading {
+  color: var(--magenta);
+  font-size: 40px;
+  font-weight: 500;
+  margin-bottom: 70px;
+}
+.file {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  min-height: 120px;
+  margin-bottom: 100px;
+  border-radius: 10px;
+  width: 80vw;
+  background-color: white;
+  align-items: center;
+  justify-content: center;
+  display: flex;
+  font-size: 35px;
+  padding: 20px;
+}
+.file .fileName {
+  text-align: center;
+  word-break: break-word;
 }

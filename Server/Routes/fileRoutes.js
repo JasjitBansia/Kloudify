@@ -6,6 +6,8 @@ const { getSpaceUsed } = require("../File/getSpaceUsed.js");
 const { checkSufficientSpace } = require("../File/checkSufficientSpace.js");
 const { getUploadProgress } = require("../File/getUploadProgress.js");
 const { deleteFile } = require("../File/deleteFile.js");
+const { deleteAllFiles } = require("../File/deleteAllFiles.js");
+const { getFileList } = require("../File/getFileList.js");
 router.get("/", (req, res) => {
   res.redirect("/app");
 });
@@ -15,4 +17,6 @@ router.get("/getSpaceUsed", getSpaceUsed);
 router.post("/checkSufficientSpace", checkSufficientSpace);
 router.get("/getUploadProgress", getUploadProgress);
 router.delete("/delete", deleteFile);
+router.delete("/deleteAllFiles", deleteAllFiles);
+router.get("/getFileList", getFileList);
 module.exports = router;
