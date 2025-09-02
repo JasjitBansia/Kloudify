@@ -23,7 +23,7 @@ async function getFileList(req, res) {
         }
       }
     }
-    res.status(200).send(fileArray);
+    return res.status(200).send(fileArray);
   } catch (e) {
     console.log(e);
     return res.status(500).send("Error");

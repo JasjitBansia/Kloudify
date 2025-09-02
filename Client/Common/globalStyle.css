@@ -36,11 +36,6 @@ body {
   padding: 10px;
 }
 
-button:disabled {
-  transition: 0.2s;
-  opacity: 0.5;
-  pointer-events: none;
-}
 #confirmButton {
   background-color: var(--softRed);
   color: white;
@@ -72,19 +67,25 @@ button:disabled {
   justify-content: center;
   flex-direction: column;
   gap: 30px;
-  z-index: 2;
+  z-index: 3;
 }
 #confirmText {
   padding: 15px;
   font-size: 30px;
   text-align: center;
 }
-.confirm input {
+.confirm input,
+.confirm select {
   border-radius: 10px;
   font-size: 30px;
   width: 400px;
-  height: 30px;
+  height: 40px;
   margin-top: 10px;
+}
+.confirm select {
+  height: 35px;
+  width: 350px;
+  font-size: 25px;
 }
 .confirmButtons {
   display: flex;
@@ -102,10 +103,14 @@ button:disabled {
   margin-bottom: 10px;
 }
 .background {
-  position: absolute;
+  position: fixed;
   height: 100vh;
   width: 100vw;
   background: rgb(0, 0, 0);
   opacity: 0.9;
-  z-index: 1;
+  z-index: 2;
+}
+#deletionTypeInfo {
+  width: 430px;
+  text-align: center;
 }

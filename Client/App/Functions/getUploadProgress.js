@@ -59,11 +59,11 @@ async function getUploadProgress(file) {
     fileName = fileName.slice(0, 10) + "...";
   }
   if (screenWidth < 768) {
-    document.querySelector(".fileNameClass").style.fontSize = "30px";
+    document.querySelector(".fileNameClass").style.fontSize = "25px";
   }
   document.querySelector(
     ".fileNameClass"
-  ).innerText = `${fileName} - Uploading ${uploadPercentage.toFixed(
+  ).innerText = `${fileName} - Uploading\n ${uploadPercentage.toFixed(
     2
   )}% (${modifiedUploadedFileSize} ${uploadedDataType} / ${modifiedOriginalFileSize} ${fileSizeType})`;
 }

@@ -1,0 +1,132 @@
+function removeFileOptionWindow() {
+  document.querySelector(".background").remove();
+  document.querySelector(".fileActions").remove();
+}
+
+async function fileOptions(fileName) {
+  //      <div class="fileActions">
+  //   <div id="copyLinkOption"><img src="../Assets/copy.png" />Copy Link</div>
+  //   <div id="renameFileOption"><img src="../Assets/rename.png" />Rename</div>
+  //   <div id="deleteFileOption">
+  //     <img src="../Assets/delete-inverted.png" />Delete
+  //   </div>
+  // </div>
+  let backgroundDiv = document.createElement("div");
+  backgroundDiv.classList.add("background");
+  document.body.prepend(backgroundDiv);
+  let fileActionsDiv = document.createElement("div");
+  fileActionsDiv.classList.add("fileActions");
+
+  let copyLinkOptionDiv = document.createElement("div");
+  copyLinkOptionDiv.id = "copyLinkOption";
+  copyLinkOptionDiv.innerText = "Copy Link";
+  let copyLinkImg = document.createElement("img");
+  copyLinkImg.src = "../../Assets/copy.png";
+  copyLinkOptionDiv.appendChild(copyLinkImg);
+
+  let renameFileDiv = document.createElement("div");
+  renameFileDiv.id = "renameFileOption";
+  renameFileDiv.innerText = "Rename";
+  let renameFileImg = document.createElement("img");
+  renameFileImg.src = "../../Assets/rename.png";
+  renameFileDiv.appendChild(renameFileImg);
+
+  let deleteFileDiv = document.createElement("div");
+  deleteFileDiv.id = "deleteFileOption";
+  deleteFileDiv.innerText = "Delete";
+  let deleteFileImg = document.createElement("img");
+  deleteFileImg.src = "../../Assets/delete-inverted.png";
+  deleteFileDiv.appendChild(deleteFileImg);
+
+  fileActionsDiv.appendChild(copyLinkOptionDiv);
+  fileActionsDiv.appendChild(renameFileDiv);
+  fileActionsDiv.appendChild(deleteFileDiv);
+  document.body.prepend(fileActionsDiv);
+  window.scrollTo(0, 0);
+
+  let renameElement = document.querySelector("#renameFileOption");
+  renameElement.addEventListener("click", () => {
+    renameFile(fileName);
+  });
+  let deleteElement = document.querySelector("#deleteFileOption");
+  deleteElement.addEventListener("click", () => {
+    deleteFile(fileName);
+  });
+}
+async function renameFile(fileName) {
+  inputConfirmation("Enter new file name: ");
+  removeFileOptionWindow();
+  let confirmInput = document.querySelector("#confirmInput");
+  confirmInput.value = fileName;
+  let confirmButton = document.querySelector("#confirmButton");
+  confirmButton.addEventListener("click", async () => {
+    removeConfirmationWindow();
+    let newFileName = confirmInput.value.trim();
+    let newModifiedFileName = "";
+    for (let i = 0; i <= newFileName.length; i++) {
+      if (newFileName.charAt(i) === " ") {
+        newModifiedFileName += "-";
+      } else {
+        newModifiedFileName += newFileName.charAt(i);
+      }
+    }
+    let req = await fetch("/file/renameFile", {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        oldfilename: fileName,
+        newfilename: newModifiedFileName,
+      }),
+    });
+    let res = await req.text();
+    if (req.status === 200) {
+      getFilelist();
+      alertMessage(res, "successAlert");
+    } else if (req.status === 409) {
+      alertMessage(res, "alert");
+    } else {
+      alertMessage("Server error", "alert");
+    }
+  });
+}
+
+async function deleteFile(fileName) {
+  removeFileOptionWindow();
+  selectionConfirmation("Confirm action and select deletion type");
+  let selection = document.querySelector("#confirmSelect");
+  let deletionInfo = document.querySelector("#deletionTypeInfo");
+  let normalDeletionText =
+    "Normal deletion. Works by removing file reference from the file system, making the data available for overwriting";
+  let shredDeletionText =
+    "Shredding. In addition to normal deletion, overwrites the file data with random data, making it non recoverable (slower)";
+  deletionInfo.innerText = normalDeletionText;
+  selection.addEventListener("change", () => {
+    if (selection.value === "normal") {
+      deletionInfo.innerText = normalDeletionText;
+    } else {
+      deletionInfo.innerText = shredDeletionText;
+    }
+  });
+  let confirmButton = document.querySelector("#confirmButton");
+  confirmButton.addEventListener("click", async () => {
+    removeConfirmationWindow();
+    let req = await fetch("/file/delete", {
+      method: "DELETE",
+      headers: {
+        filename: fileName,
+        deletiontype: selection.value,
+      },
+    });
+    let res = await req.text();
+    if (req.status === 200) {
+      getFilelist();
+      alertMessage(res, "successAlert");
+    } else if (req.status === 501) {
+      alertMessage(res, "alert");
+    } else {
+      alertMessage("Server error", "alert");
+    }
+  });
+}

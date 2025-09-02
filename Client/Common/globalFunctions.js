@@ -58,14 +58,6 @@ function removeConfirmationWindow() {
   document.querySelector(".background").remove();
 }
 function inputConfirmation(confirmText) {
-  //  <div class="confirm">
-  //     <span id="confirmText"></span>
-  //     <input type="text" id="confirmInput">
-  //     <div class="confirmButtons">
-  //       <button id="confirmButton">Confirm</button>
-  //       <button id="cancelButton">Cancel</button>
-  //     </div>
-  //   </div>
   let elements = createBasicElements(confirmText);
   let confirmDiv = elements.confirmDiv;
   let confirmButtonsDiv = elements.confirmButtonsDiv;
@@ -85,5 +77,40 @@ function buttonConfirmation(confirmText) {
   //   </div>
   let elements = createBasicElements(confirmText);
   let confirmDiv = elements.confirmDiv;
+  document.body.prepend(confirmDiv);
+}
+function selectionConfirmation(confirmText) {
+  // <div class="confirm">
+  //   <span id="confirmText">Select deletion type</span>
+  //   <select name="deleteType" id="confirmSelect">
+  //     <option value="normal">Normal</option>
+  //     <option value="shred">Shred</option>
+  //   </select>
+  //   <span id="deletionTypeInfo">
+  //     Normal deletion. Works by removing file reference from the file system,
+  //     making the data available for overwriting
+  //   </span>
+  //   <div class="confirmButtons">
+  //     <button id="confirmButton">Confirm</button>
+  //     <button id="cancelButton">Cancel</button>
+  //   </div>
+  // </div>;
+  let elements = createBasicElements(confirmText);
+  let confirmDiv = elements.confirmDiv;
+  let confirmButtonsDiv = elements.confirmButtonsDiv;
+  let selection = document.createElement("select");
+  selection.id = "confirmSelect";
+  let normalOption = document.createElement("option");
+  normalOption.value = "normal";
+  normalOption.innerText = "Normal (recommended)";
+  selection.appendChild(normalOption);
+  let shredOption = document.createElement("option");
+  shredOption.value = "shred";
+  shredOption.innerText = "Shred";
+  selection.appendChild(shredOption);
+  confirmDiv.insertBefore(selection, confirmButtonsDiv);
+  let info = document.createElement("span");
+  info.id = "deletionTypeInfo";
+  confirmDiv.insertBefore(info, confirmButtonsDiv);
   document.body.prepend(confirmDiv);
 }

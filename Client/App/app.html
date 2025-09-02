@@ -7,15 +7,19 @@
     <link rel="stylesheet" href="app.css" />
     <link rel="stylesheet" href="../Common/mediaQuery.css" />
   </head>
-
   <body>
+    <!-- <div class="fileActions">
+      <div id="copyLinkOption"><img src="../Assets/copy.png" />Copy Link</div>
+      <div id="renameFileOption"><img src="../Assets/rename.png" />Rename</div>
+      <div id="deleteFileOption">
+        <img src="../Assets/delete-inverted.png" />Delete
+      </div>
+    </div> -->
     <div class="options">
       <span class="settings"
-        ><img id="settingsImage" src="../Assets/settings.png" />
+        ><img id="settingsImage" src="../Assets/settings.png" alt="Settings" />
         <div class="settingsContainer">
           <ul>
-            <li>One</li>
-            <li>Two</li>
             <li class="dangerousActions" id="deleteAllFiles">
               <img src="../Assets/files.png" id="deleteFilesImage" />Delete all
               files
@@ -50,7 +54,7 @@
   <script src="./Functions/getUploadProgress.js"></script>
   <script src="./Functions/getFileList.js"></script>
   <script src="./Functions/settingsMenu.js"></script>
-  <script src="./Functions/deleteAllFiles.js"></script>
   <script src="./Functions/resetUploadState.js"></script>
+  <script src="./Functions/fileOptions.js"></script>
   <script src="../Common/globalFunctions.js"></script>
 </html>

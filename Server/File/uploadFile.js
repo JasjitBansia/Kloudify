@@ -6,13 +6,24 @@ async function uploadFile(req, res) {
   requestNumber++;
   let username = req.username;
   let fileName = req.headers.filename;
+  let modifiedFileName = "";
   let fileSize = req.headers.filesize;
   let numberOfParts = req.headers.numberofparts;
   let currentPartNumber = req.headers.currentpartnumber;
 
   try {
     let folderPath = path.join(__dirname, `../../Files/${username}`);
-    let filePath = path.join(__dirname, `../../Files/${username}/${fileName}`);
+    for (let i = 0; i <= fileName.length - 1; i++) {
+      if (fileName.charAt(i) === " ") {
+        modifiedFileName += "-";
+      } else {
+        modifiedFileName += fileName.charAt(i);
+      }
+    }
+    let filePath = path.join(
+      __dirname,
+      `../../Files/${username}/${modifiedFileName}`
+    );
     let folderExists = fs.existsSync(folderPath);
     if (!folderExists) {
       fs.mkdirSync(path.join(__dirname, `../../Files/${username}`));

@@ -4,7 +4,7 @@ function generateJWT(username, res) {
     expiresIn: "30d",
   });
   res.cookie("Auth", jwttoken, {
-    maxAge: 30 * 24 * 60 * 60 * 1000,
+    maxAge: 29.5 * 24 * 60 * 60 * 1000,
   });
 }
 module.exports = { generateJWT };

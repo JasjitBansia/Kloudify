@@ -27,8 +27,10 @@
   color: white;
   font-size: 40px;
   text-align: center;
-  margin-bottom: 10%;
-  text-wrap: wrap;
+  margin-bottom: 20px;
+  max-width: 80vw;
+  text-align: center;
+  word-break: break-word;
 }
 .uploadActions {
   display: flex;
@@ -77,7 +79,7 @@
 .settingsContainer {
   pointer-events: none;
   opacity: 0;
-  min-height: 150px;
+  min-height: 80px;
   min-width: 150px;
   position: absolute;
   right: 17%;
@@ -131,12 +133,11 @@
 .filesContainer {
   position: absolute;
   display: flex;
-  top: 35%;
+  top: 40%;
   left: 50%;
   transform: translateX(-50%);
   justify-self: center;
   align-items: center;
-  min-height: 100vh * 5;
   min-width: 400px;
   flex-direction: column;
 }
@@ -159,8 +160,72 @@
   display: flex;
   font-size: 35px;
   padding: 20px;
+  position: relative;
 }
 .file .fileName {
   text-align: center;
   word-break: break-word;
+}
+.file .fileOptionsMenu {
+  position: absolute;
+  top: 0;
+  right: 0;
+  padding-top: 10px;
+  padding-right: 15px;
+}
+.file .fileOptionsMenu img {
+  height: 32px;
+  width: 32px;
+}
+.fileActions {
+  display: flex;
+  align-items: center;
+  justify-self: center;
+  flex-direction: column;
+  flex: 1;
+  height: 40vh;
+  width: 500px;
+  position: absolute;
+  border-radius: 10px;
+  z-index: 3;
+  background-color: white;
+}
+.fileActions div {
+  font-size: 25px;
+  padding: 10px;
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 96%;
+  transition: 0.3s;
+}
+.fileActions div img {
+  position: absolute;
+  left: 28%;
+  height: 48px;
+  width: 48px;
+}
+#deleteFileOption img {
+  height: 42px;
+  width: 42px;
+  left: 30%;
+}
+.fileActions div:first-child {
+  border-radius: 10px 10px 0px 0px;
+}
+.fileActions div:last-child {
+  border-radius: 0px 0px 10px 10px;
+}
+#copyLinkOption:hover,
+#renameFileOption:hover {
+  background-color: rgb(158, 156, 156);
+}
+#deleteFileOption {
+  background-color: var(--softRed);
+  color: white;
+}
+
+#deleteFileOption:hover {
+  background-color: red;
 }

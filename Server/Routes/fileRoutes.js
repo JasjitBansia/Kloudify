@@ -8,6 +8,7 @@ const { getUploadProgress } = require("../File/getUploadProgress.js");
 const { deleteFile } = require("../File/deleteFile.js");
 const { deleteAllFiles } = require("../File/deleteAllFiles.js");
 const { getFileList } = require("../File/getFileList.js");
+const { renameFile } = require("../File/renameFile.js");
 router.get("/", (req, res) => {
   res.redirect("/app");
 });
@@ -19,4 +20,5 @@ router.get("/getUploadProgress", getUploadProgress);
 router.delete("/delete", deleteFile);
 router.delete("/deleteAllFiles", deleteAllFiles);
 router.get("/getFileList", getFileList);
+router.patch("/renameFile", renameFile);
 module.exports = router;

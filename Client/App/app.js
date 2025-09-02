@@ -1,8 +1,8 @@
 let logOut = document.querySelector("#logout");
 let fileInput = document.querySelector("#fileInput");
 let uploadActions = document.querySelector(".uploadActions");
-let isUploading = false;
-window.onload = function () {
+window.onload = async function () {
+  await fetch("/account/pingUser", { method: "POST" });
   sessionStorage.setItem("isUploading", "false");
   getFilelist();
 };

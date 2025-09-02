@@ -22,6 +22,5 @@ function removeSelectedFileLogic(fileNameElement, fileInput, uploadButton) {
     removeFileImage.remove();
     fileNameElement.remove();
     uploadButton.remove();
-    fileInput.disabled = false;
   });
 }

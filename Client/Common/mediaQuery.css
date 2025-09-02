@@ -1,14 +1,30 @@
 @media (max-width: 768px) {
   .confirm {
-    min-width: 400px;
+    min-width: 380px;
   }
   .filesContainer {
     top: 70%;
   }
   .file {
-    width: 90vw;
+    width: 80vw;
     min-height: 100px;
     margin-bottom: 70px;
     font-size: 30px;
+  }
+  .fileActions {
+    height: 45vh;
+    width: 350px;
+  }
+  .fileActions div {
+    width: 95%;
+  }
+  .fileActions div img {
+    left: 20%;
+  }
+  #deleteFileOption img {
+    left: 22%;
+  }
+  #deletionTypeInfo {
+    width: 400px;
   }
 }
