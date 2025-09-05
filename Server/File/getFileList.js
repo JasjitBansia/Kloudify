@@ -7,16 +7,19 @@ async function getFileList(req, res) {
   try {
     let files = fs.readdirSync(folderPath);
     files.forEach((file) => {
-      let creationTime = fs.statSync(folderPath + `/${file}`).birthtimeMs;
+      let fileStats = fs.statSync(folderPath + `/${file}`);
+      let ctime = fileStats.ctimeMs;
+      let size = fileStats.size;
       let obj = {
         fileName: file,
-        createdAt: creationTime,
+        ctime: ctime,
+        size: size,
       };
       fileArray.push(obj);
     });
     for (let i = 0; i < fileArray.length - 1; i++) {
       for (let j = 0; j < fileArray.length - i - 1; j++) {
-        if (fileArray[j].createdAt < fileArray[j + 1].createdAt) {
+        if (fileArray[j].ctime < fileArray[j + 1].ctime) {
           let temp = fileArray[j];
           fileArray[j] = fileArray[j + 1];
           fileArray[j + 1] = temp;

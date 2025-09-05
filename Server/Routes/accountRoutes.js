@@ -5,6 +5,9 @@ const { loginUser } = require("../Account/loginUser.js");
 const { logoutUser } = require("../Account/logoutUser.js");
 const { authMiddleware } = require("../Middleware/authMiddleware.js");
 const { pingUser } = require("../Account/pingUser.js");
+const { getSpaceUsed } = require("../Account/getSpaceUsed.js");
+const { getAllocatedSpace } = require("../Account/getAllocatedSpace.js");
+const { deleteAccount } = require("../Account/deleteAccount.js");
 router.get("/", (req, res) => {
   res.redirect("/app");
 });
@@ -12,4 +15,7 @@ router.post("/register", registerUser);
 router.post("/login", loginUser);
 router.post("/logout", authMiddleware, logoutUser);
 router.post("/pingUser", authMiddleware, pingUser);
+router.get("/getSpaceUsed", authMiddleware, getSpaceUsed);
+router.get("/getAllocatedSpace", authMiddleware, getAllocatedSpace);
+router.delete("/deleteAccount", authMiddleware, deleteAccount);
 module.exports = router;

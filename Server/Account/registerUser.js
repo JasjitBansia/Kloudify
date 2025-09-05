@@ -2,6 +2,8 @@ const { db } = require("../db.js");
 const { generateJWT } = require("./generateJWT.js");
 const { hashPassword } = require("./Hashing/hashPassword.js");
 let collection = db.collection("userData");
+const fs = require("fs");
+const path = require("path");
 let userCountCollection = db.collection("userCount");
 async function registerUser(req, res) {
   let userDocument = await userCountCollection.findOne({});
@@ -28,6 +30,7 @@ async function registerUser(req, res) {
         });
         await userCountCollection.updateOne({}, { $inc: { userCount: 1 } });
         generateJWT(receivedUsername, res);
+        fs.mkdirSync(path.join(__dirname, `../../Files/${receivedUsername}`));
         return res.status(200).send("User registererd");
       } else {
         return res.status(409).send("User already exists");

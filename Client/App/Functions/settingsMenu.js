@@ -1,6 +1,7 @@
 let settingsElement = document.querySelector(".settings");
 let settingsContainer = document.querySelector(".settingsContainer");
-let deleteAllFiles = document.querySelector("#deleteAllFiles");
+let deleteAllFilesElement = document.querySelector("#deleteAllFiles");
+let deleteAccountElement = document.querySelector("#deleteAccount");
 settingsElement.addEventListener("mouseover", () => {
   settingsContainer.style.opacity = "1";
   settingsContainer.style.pointerEvents = "all";
@@ -10,8 +11,12 @@ settingsElement.addEventListener("mouseout", () => {
   settingsContainer.style.pointerEvents = "none";
 });
 
-deleteAllFiles.addEventListener("click", () => {
+deleteAllFilesElement.addEventListener("click", () => {
   deletAllFiles();
+});
+
+deleteAccountElement.addEventListener("click", () => {
+  deleteAccount();
 });
 
 async function deletAllFiles() {
@@ -24,7 +29,7 @@ async function deletAllFiles() {
       let res = await req.text();
       if (req.status === 200) {
         alertMessage(res, "successAlert");
-        getFilelist();
+        getFileList();
       } else if (req.status === 404) {
         alertMessage(res, "alert");
       } else {
@@ -34,4 +39,24 @@ async function deletAllFiles() {
   } else {
     alertMessage("An upload is in progress. Try again after it ends", "alert");
   }
+}
+
+async function deleteAccount() {
+  buttonConfirmation(
+    "Your account along with your files will be deleted (normal deletion). Are you sure?"
+  );
+  let confirmButton = document.querySelector("#confirmButton");
+  confirmButton.addEventListener("click", async () => {
+    removeConfirmationWindow();
+    let req = await fetch("/account/deleteAccount", { method: "DELETE" });
+    let res = await req.text();
+    if (req.status === 200) {
+      alertMessage(res, "successAlert");
+      setTimeout(() => {
+        window.location.href = "/login";
+      }, 2000);
+    } else {
+      alertMessage("Server Error", "alert");
+    }
+  });
 }

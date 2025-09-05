@@ -3,7 +3,7 @@ function removeFileOptionWindow() {
   document.querySelector(".fileActions").remove();
 }
 
-async function fileOptions(fileName) {
+async function fileOptions(fileName, fileNameElement) {
   //      <div class="fileActions">
   //   <div id="copyLinkOption"><img src="../Assets/copy.png" />Copy Link</div>
   //   <div id="renameFileOption"><img src="../Assets/rename.png" />Rename</div>
@@ -50,7 +50,7 @@ async function fileOptions(fileName) {
   });
   let deleteElement = document.querySelector("#deleteFileOption");
   deleteElement.addEventListener("click", () => {
-    deleteFile(fileName);
+    deleteFile(fileName, fileNameElement);
   });
 }
 async function renameFile(fileName) {
@@ -82,7 +82,7 @@ async function renameFile(fileName) {
     });
     let res = await req.text();
     if (req.status === 200) {
-      getFilelist();
+      getFileList();
       alertMessage(res, "successAlert");
     } else if (req.status === 409) {
       alertMessage(res, "alert");
@@ -92,7 +92,7 @@ async function renameFile(fileName) {
   });
 }
 
-async function deleteFile(fileName) {
+async function deleteFile(fileName, fileNameElement) {
   removeFileOptionWindow();
   selectionConfirmation("Confirm action and select deletion type");
   let selection = document.querySelector("#confirmSelect");
@@ -121,10 +121,22 @@ async function deleteFile(fileName) {
     });
     let res = await req.text();
     if (req.status === 200) {
-      getFilelist();
+      getFileList();
       alertMessage(res, "successAlert");
-    } else if (req.status === 501) {
-      alertMessage(res, "alert");
+    } else if (req.status === 202) {
+      fileNameElement.innerText += " (shredding in progress)";
+      alertMessage(res, "successAlert");
+      interval = setInterval(async () => {
+        let shreddingStateReq = await fetch("/file/getShreddingState");
+        let shreddingStateRes = await shreddingStateReq.json();
+        if (shreddingStateRes.shredding === false) {
+          clearInterval(interval);
+          setTimeout(() => {
+            getFileList();
+            alertMessage("Your file has been shredded", "successAlert");
+          }, 3000);
+        }
+      }, 1000);
     } else {
       alertMessage("Server error", "alert");
     }

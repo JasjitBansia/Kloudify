@@ -4,7 +4,7 @@ let uploadActions = document.querySelector(".uploadActions");
 window.onload = async function () {
   await fetch("/account/pingUser", { method: "POST" });
   sessionStorage.setItem("isUploading", "false");
-  getFilelist();
+  getFileList();
 };
 logOut.addEventListener("click", async () => {
   try {

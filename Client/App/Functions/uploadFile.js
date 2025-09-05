@@ -18,6 +18,7 @@ async function uploadFile(file) {
         headers: {
           filename: file.name,
           filesize: file.size,
+          partsize: partSize,
           numberofparts: numberOfParts,
           currentpartnumber: currentPartNumber,
         },
@@ -32,7 +33,7 @@ async function uploadFile(file) {
             ".fileNameClass"
           ).innerText = `${file.name} - Uploading 100%`;
           alertMessage(res, "successAlert");
-          getFilelist();
+          getFileList();
           resetUploadState();
         } else {
           if (sessionStorage.getItem("isUploading") === "true") {
@@ -40,6 +41,16 @@ async function uploadFile(file) {
           }
         }
       } else if (req.status === 507) {
+        sessionStorage.setItem("isUploading", "false");
+        alertMessage(res, "alert");
+        resetUploadState();
+        break;
+      } else if (req.status === 400) {
+        sessionStorage.setItem("isUploading", "false");
+        alertMessage(res, "alert");
+        resetUploadState();
+        break;
+      } else if (req.status === 503) {
         sessionStorage.setItem("isUploading", "false");
         alertMessage(res, "alert");
         resetUploadState();

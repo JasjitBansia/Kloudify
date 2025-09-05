@@ -142,11 +142,19 @@
   flex-direction: column;
 }
 
-.filesContainer #fileHeading {
+.filesContainer .fileHeading {
   color: var(--magenta);
   font-size: 40px;
   font-weight: 500;
   margin-bottom: 70px;
+}
+.fileHeading {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+#headingStorageStat {
+  font-size: 20px;
 }
 .file {
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);

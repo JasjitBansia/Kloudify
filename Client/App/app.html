@@ -24,7 +24,7 @@
               <img src="../Assets/files.png" id="deleteFilesImage" />Delete all
               files
             </li>
-            <li class="dangerousActions">
+            <li class="dangerousActions" id="deleteAccount">
               <img
                 src="../Assets/delete-inverted.png"
                 id="deleteAccountImage"
@@ -44,7 +44,10 @@
       </div>
     </div>
     <div class="filesContainer">
-      <span id="fileHeading">FILES</span>
+      <div class="fileHeading">
+        <span id="heading">FILES</span>
+        <span id="headingStorageStat"></span>
+      </div>
       <div class="fileList"></div>
     </div>
   </body>
@@ -52,6 +55,7 @@
   <script src="./Functions/removeSelectedFileLogic.js"></script>
   <script src="./Functions/uploadFile.js"></script>
   <script src="./Functions/getUploadProgress.js"></script>
+  <script src="./Functions/formatSize.js"></script>
   <script src="./Functions/getFileList.js"></script>
   <script src="./Functions/settingsMenu.js"></script>
   <script src="./Functions/resetUploadState.js"></script>
