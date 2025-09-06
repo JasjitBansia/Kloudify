@@ -3,8 +3,19 @@ const path = require("path");
 async function getUploadProgress(req, res) {
   let fileName = req.headers.filename;
   let username = req.username;
+  let modifiedFileName = "";
+  for (let i = 0; i <= fileName.length; i++) {
+    if (fileName.charAt(i) === " ") {
+      modifiedFileName += "-";
+    } else {
+      modifiedFileName += fileName.charAt(i);
+    }
+  }
   try {
-    let filePath = path.join(__dirname, `../../Files/${username}/${fileName}`);
+    let filePath = path.join(
+      __dirname,
+      `../../Files/${username}/${modifiedFileName}`
+    );
     let fileStat = fs.statSync(filePath);
     let fileSize = fileStat.size;
     return res.status(200).send(fileSize.toString());

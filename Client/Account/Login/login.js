@@ -1,8 +1,8 @@
 let buttonElement = document.querySelector(".submit");
 let usernameElement = document.querySelector("#username");
 let passwordElement = document.querySelector("#password");
-let token = document.cookie.split("=")[1];
-if (token) {
+let token = document.cookie.split("Auth=")[1];
+if (token !== undefined) {
   window.location.href = "/app";
 }
 buttonElement.addEventListener("click", async () => {

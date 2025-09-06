@@ -4,8 +4,8 @@ const { port } = require("../server.js");
 async function checkSufficientSpace(req, res) {
   let username = req.username;
   let fileSize = Number.parseInt(req.body.filesize);
-  let currentPartNumber = req.body.currentpartnumber;
-  let partSize = req.body.partsize;
+  let currentPartNumber = Number.parseInt(req.body.currentpartnumber);
+  let partSize = Number.parseInt(req.body.partsize);
 
   try {
     let userDocument = await collection.findOne({ username: username });

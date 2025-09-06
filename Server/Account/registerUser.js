@@ -19,8 +19,6 @@ async function registerUser(req, res) {
       });
       if (userExists === null) {
         let hashedPassword = await hashPassword(receivedPassword);
-        collection.findOne();
-        db.collection;
         await collection.insertOne({
           username: receivedUsername,
           password: hashedPassword,

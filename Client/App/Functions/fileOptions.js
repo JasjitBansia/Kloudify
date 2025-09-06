@@ -3,7 +3,7 @@ function removeFileOptionWindow() {
   document.querySelector(".fileActions").remove();
 }
 
-async function fileOptions(fileName, fileNameElement) {
+async function fileOptions(fileName, fileNameElement, username) {
   //      <div class="fileActions">
   //   <div id="copyLinkOption"><img src="../Assets/copy.png" />Copy Link</div>
   //   <div id="renameFileOption"><img src="../Assets/rename.png" />Rename</div>
@@ -44,6 +44,11 @@ async function fileOptions(fileName, fileNameElement) {
   document.body.prepend(fileActionsDiv);
   window.scrollTo(0, 0);
 
+  let copyLinkElement = document.querySelector("#copyLinkOption");
+  copyLinkElement.addEventListener("click", () => {
+    copyFileLink(fileName, username);
+  });
+
   let renameElement = document.querySelector("#renameFileOption");
   renameElement.addEventListener("click", () => {
     renameFile(fileName);
@@ -53,11 +58,23 @@ async function fileOptions(fileName, fileNameElement) {
     deleteFile(fileName, fileNameElement);
   });
 }
+
+async function copyFileLink(fileName, username) {
+  removeFileOptionWindow();
+  await navigator.clipboard.writeText(
+    `http://localhost:6060/files/${username}/${fileName}`
+  );
+  alertMessage("Link copied to clipboard", "successAlert");
+}
+
 async function renameFile(fileName) {
   inputConfirmation("Enter new file name: ");
   removeFileOptionWindow();
   let confirmInput = document.querySelector("#confirmInput");
   confirmInput.value = fileName;
+  let excludeFileExtension = fileName.lastIndexOf(".");
+  confirmInput.focus();
+  confirmInput.setSelectionRange(0, excludeFileExtension);
   let confirmButton = document.querySelector("#confirmButton");
   confirmButton.addEventListener("click", async () => {
     removeConfirmationWindow();

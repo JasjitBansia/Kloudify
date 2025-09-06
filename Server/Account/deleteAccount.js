@@ -1,6 +1,7 @@
 const { db } = require("../db.js");
 const { port } = require("../server.js");
 let collection = db.collection("userData");
+let userCountCollection = db.collection("userCount");
 let fs = require("fs");
 let path = require("path");
 async function deleteAccount(req, res) {
@@ -19,6 +20,7 @@ async function deleteAccount(req, res) {
       let folderPath = path.join(__dirname, `../../Files/${username}`);
       fs.rmdirSync(folderPath);
       await collection.deleteOne({ username: username });
+      await userCountCollection.updateOne({}, { $inc: { userCount: -1 } });
       res.clearCookie("Auth");
       return res.status(200).send("Your account has been deleted");
     }

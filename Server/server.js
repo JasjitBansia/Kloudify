@@ -67,3 +67,10 @@ app.get("*", (req, res) => {
 app.listen(port, () => {
   console.log(`Listening on port ${port}`);
 });
+
+setInterval(() => {
+  const {
+    deleteInactiveAccount,
+  } = require("./Account/deleteInactiveAccount.js");
+  deleteInactiveAccount();
+}, 5 * 60 * 1000);

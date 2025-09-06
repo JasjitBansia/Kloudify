@@ -11,7 +11,7 @@ async function getSpaceUsed(req, res) {
       let fileSize = fs.statSync(filePath).size;
       totalSize += fileSize;
     });
-    return res.status(200).send({ usedSpace: totalSize });
+    return res.status(200).send({ usedSpace: totalSize, username: username });
   } catch (e) {
     console.log(e);
     return res.status(500).send("Error");

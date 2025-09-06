@@ -4,6 +4,7 @@ async function getFileList() {
   let files = await fileListReq.json();
   let usedSpaceReq = await fetch("/account/getSpaceUsed");
   let usedSpaceRes = await usedSpaceReq.json();
+  let username = usedSpaceRes.username;
   let allocatedSpaceReq = await fetch("/account/getAllocatedSpace");
   let allocatedSpaceRes = await allocatedSpaceReq.text();
   let usedSpaceBytes = usedSpaceRes.usedSpace;
@@ -29,7 +30,7 @@ async function getFileList() {
       div.appendChild(fileNameElement);
       fileList.appendChild(div);
       fileOptionsImg.addEventListener("click", () => {
-        fileOptions(file.fileName, fileNameElement);
+        fileOptions(file.fileName, fileNameElement, username);
       });
     });
   } else {

@@ -27,4 +27,7 @@
   #deletionTypeInfo {
     width: 400px;
   }
+  .confirm input {
+    width: 350px;
+  }
 }
