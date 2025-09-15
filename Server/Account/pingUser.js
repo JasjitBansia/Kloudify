@@ -3,7 +3,6 @@ let collection = db.collection("userData");
 async function pingUser(req, res) {
   let username = req.username;
   try {
-    let document = await collection.findOne({ username: username });
     await collection.updateOne(
       { username: username },
       { $set: { lastUserPing: new Date().toLocaleString("en-IN") } }

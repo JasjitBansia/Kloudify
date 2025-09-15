@@ -1,21 +1,12 @@
 const fs = require("fs");
 const path = require("path");
+const { formatFileName } = require("./formatFileName");
 function fileNameConflict(req, res) {
   let fileName = req.headers.filename;
-  let modifiedFileName = "";
   let username = req.username;
   try {
-    for (let i = 0; i <= fileName.length - 1; i++) {
-      if (fileName.charAt(i) === " ") {
-        modifiedFileName += "-";
-      } else {
-        modifiedFileName += fileName.charAt(i);
-      }
-    }
-    let filePath = path.join(
-      __dirname,
-      `../../Files/${username}/${modifiedFileName}`
-    );
+    fileName = formatFileName(fileName);
+    let filePath = path.join(__dirname, `../../Files/${username}/${fileName}`);
     if (fs.existsSync(filePath)) {
       return res.status(409).send("File with this name already exists");
     } else {
