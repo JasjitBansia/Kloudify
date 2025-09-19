@@ -1,5 +1,10 @@
 async function uploadFile(file) {
   document.querySelector(".removeUpload").remove();
+  let uploadArea = document.querySelector("#uploadArea");
+  let loader = document.createElement("div");
+  loader.classList.add("loader");
+  uploadArea.prepend(loader);
+  document.querySelector(".fileNameClass").innerText = "";
   let partSize = 5 * (1024 * 1024);
   let numberOfParts = Number.parseInt(file.size / partSize);
   let currentPartNumber = 0;
@@ -35,30 +40,38 @@ async function uploadFile(file) {
           alertMessage(res, "successAlert");
           getFileList();
           resetUploadState();
+          loader.remove();
         } else {
           if (sessionStorage.getItem("isUploading") === "true") {
             await getUploadProgress(file);
+            loader.remove();
           }
         }
       } else if (req.status === 507) {
         sessionStorage.setItem("isUploading", "false");
         alertMessage(res, "alert");
         resetUploadState();
+        loader.remove();
+
         break;
       } else if (req.status === 400) {
         sessionStorage.setItem("isUploading", "false");
         alertMessage(res, "alert");
         resetUploadState();
+        loader.remove();
+
         break;
       } else if (req.status === 503) {
         sessionStorage.setItem("isUploading", "false");
         alertMessage(res, "alert");
         resetUploadState();
+        loader.remove();
         break;
       } else {
         sessionStorage.setItem("isUploading", "false");
         alertMessage("Server error", "alert");
         resetUploadState();
+        loader.remove();
         console.log(res);
         break;
       }
@@ -68,6 +81,7 @@ async function uploadFile(file) {
     alertMessage(res, "alert");
     sessionStorage.setItem("isUploading", "false");
     resetUploadState();
+    loader.remove();
   } else {
     alert("Server error", "alert");
     console.log(res);

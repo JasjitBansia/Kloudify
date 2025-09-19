@@ -1,5 +1,9 @@
-let fileList = document.querySelector(".fileList");
 async function getFileList() {
+  let loaderClass = document.querySelector(".loaderClass");
+  let loader = document.createElement("div");
+  loader.classList.add("loader");
+  loaderClass.prepend(loader);
+  let fileList = document.querySelector(".fileList");
   let fileListReq = await fetch("/file/getFileList");
   let files = await fileListReq.json();
   let usedSpaceReq = await fetch("/account/getSpaceUsed");
@@ -12,6 +16,7 @@ async function getFileList() {
   let headingStorageStat = document.querySelector("#headingStorageStat");
   headingStorageStat.innerText = `(${formattedUsedSpace} / ${allocatedSpaceRes} GB)`;
   if (fileListReq.status === 200) {
+    loader.remove();
     document.querySelector(".fileList").innerHTML = "";
     files.forEach((file) => {
       let formattedFileSize = formatSize(file.size);
@@ -34,6 +39,7 @@ async function getFileList() {
       });
     });
   } else {
+    loader.remove();
     alertMessage("Sever error", "alert");
   }
 }
