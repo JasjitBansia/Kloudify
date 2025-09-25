@@ -7,6 +7,7 @@ function authMiddleware(req, res, next) {
     req.username = decode.username;
     next();
   } catch (err) {
+    res.clearCookie("Auth");
     return res.status(403).send({ content: "Invalid token. 🖕" });
   }
 }

@@ -1,12 +1,12 @@
 function mountCheck(){
-mountPoint=$(findmnt UUID=ECFF-3790)
+mountPoint=$(findmnt UUID=4A01-8278)
 
 if [ "$mountPoint" != "" ]; then
 echo "mounted"
 
 else
 cd ..
-sudo mount UUID=ECFF-3790 "$1"
+sudo mount UUID=4A01-8278 "$1"
 mountCheck
 fi
 }

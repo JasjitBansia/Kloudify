@@ -1,4 +1,8 @@
 function resetUploadState() {
+  let loader = document.querySelector(".loader");
+  if (loader !== null) {
+    loader.remove();
+  }
   document.querySelector("#uploadButton").remove();
   const chooseFileLabel = document.createElement("label");
   chooseFileLabel.htmlFor = "fileInput";

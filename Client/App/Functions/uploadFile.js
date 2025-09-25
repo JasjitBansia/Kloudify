@@ -40,38 +40,34 @@ async function uploadFile(file) {
           alertMessage(res, "successAlert");
           getFileList();
           resetUploadState();
-          loader.remove();
         } else {
           if (sessionStorage.getItem("isUploading") === "true") {
             await getUploadProgress(file);
-            loader.remove();
+            let loader = document.querySelector(".loader");
+            if (loader !== null) {
+              loader.remove();
+            }
           }
         }
       } else if (req.status === 507) {
         sessionStorage.setItem("isUploading", "false");
         alertMessage(res, "alert");
         resetUploadState();
-        loader.remove();
-
         break;
       } else if (req.status === 400) {
         sessionStorage.setItem("isUploading", "false");
         alertMessage(res, "alert");
         resetUploadState();
-        loader.remove();
-
         break;
       } else if (req.status === 503) {
         sessionStorage.setItem("isUploading", "false");
         alertMessage(res, "alert");
         resetUploadState();
-        loader.remove();
         break;
       } else {
         sessionStorage.setItem("isUploading", "false");
         alertMessage("Server error", "alert");
         resetUploadState();
-        loader.remove();
         console.log(res);
         break;
       }
@@ -81,9 +77,12 @@ async function uploadFile(file) {
     alertMessage(res, "alert");
     sessionStorage.setItem("isUploading", "false");
     resetUploadState();
-    loader.remove();
   } else {
-    alert("Server error", "alert");
+    let loader = document.querySelector(".loader");
+    if (loader !== null) {
+      loader.remove();
+    }
+    alertMessage("Server error", "alert");
     console.log(res);
   }
 }

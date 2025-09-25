@@ -17,6 +17,7 @@ input {
   text-decoration: none;
   margin-top: 25px;
   height: 40px;
+  width: 350px;
   border: none;
 }
 input::placeholder {

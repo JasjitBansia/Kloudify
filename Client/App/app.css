@@ -186,19 +186,21 @@
   width: 32px;
 }
 .fileActions {
+  cursor: pointer;
   display: flex;
   align-items: center;
   justify-self: center;
   flex-direction: column;
   flex: 1;
   height: 40vh;
-  width: 500px;
+  width: 450px;
   position: absolute;
   border-radius: 10px;
   z-index: 3;
   background-color: white;
 }
-.fileActions div {
+.fileActions div,
+.fileActions a {
   font-size: 25px;
   padding: 10px;
   flex: 1;
@@ -208,7 +210,8 @@
   width: 96%;
   transition: 0.3s;
 }
-.fileActions div img {
+.fileActions div img,
+.fileActions a img {
   position: absolute;
   left: 28%;
   height: 48px;
@@ -225,6 +228,7 @@
 .fileActions div:last-child {
   border-radius: 0px 0px 10px 10px;
 }
+#downloadFileOption:hover,
 #copyLinkOption:hover,
 #renameFileOption:hover {
   background-color: rgb(158, 156, 156);

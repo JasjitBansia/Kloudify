@@ -3,8 +3,9 @@ function removeFileOptionWindow() {
   document.querySelector(".fileActions").remove();
 }
 
-async function fileOptions(fileName, fileNameElement, username) {
+async function fileOptions(fileName, fileNameElement, url) {
   //      <div class="fileActions">
+  //   <div id="downloadFileOption"><img src="../Assets/download.png" />Download</div>
   //   <div id="copyLinkOption"><img src="../Assets/copy.png" />Copy Link</div>
   //   <div id="renameFileOption"><img src="../Assets/rename.png" />Rename</div>
   //   <div id="deleteFileOption">
@@ -16,6 +17,13 @@ async function fileOptions(fileName, fileNameElement, username) {
   document.body.prepend(backgroundDiv);
   let fileActionsDiv = document.createElement("div");
   fileActionsDiv.classList.add("fileActions");
+
+  let downloadFileDiv = document.createElement("div");
+  downloadFileDiv.id = "downloadFileOption";
+  downloadFileDiv.innerText = "Download";
+  let downloadFileImg = document.createElement("img");
+  downloadFileImg.src = "../../Assets/download.png";
+  downloadFileDiv.appendChild(downloadFileImg);
 
   let copyLinkOptionDiv = document.createElement("div");
   copyLinkOptionDiv.id = "copyLinkOption";
@@ -38,32 +46,43 @@ async function fileOptions(fileName, fileNameElement, username) {
   deleteFileImg.src = "../../Assets/delete-inverted.png";
   deleteFileDiv.appendChild(deleteFileImg);
 
+  fileActionsDiv.appendChild(downloadFileDiv);
   fileActionsDiv.appendChild(copyLinkOptionDiv);
   fileActionsDiv.appendChild(renameFileDiv);
   fileActionsDiv.appendChild(deleteFileDiv);
   document.body.prepend(fileActionsDiv);
   window.scrollTo(0, 0);
 
-  let copyLinkElement = document.querySelector("#copyLinkOption");
-  copyLinkElement.addEventListener("click", () => {
-    copyFileLink(fileName, username);
+  downloadFileDiv.addEventListener("click", () => {
+    downloadFile(url, fileName, downloadFileDiv);
   });
 
-  let renameElement = document.querySelector("#renameFileOption");
-  renameElement.addEventListener("click", () => {
+  copyLinkOptionDiv.addEventListener("click", () => {
+    copyFileLink(url);
+  });
+
+  renameFileDiv.addEventListener("click", () => {
     renameFile(fileName);
   });
-  let deleteElement = document.querySelector("#deleteFileOption");
-  deleteElement.addEventListener("click", () => {
+
+  deleteFileDiv.addEventListener("click", () => {
     deleteFile(fileName, fileNameElement);
   });
 }
 
-async function copyFileLink(fileName, username) {
+function downloadFile(url, fileName, downloadFileDiv) {
   removeFileOptionWindow();
-  await navigator.clipboard.writeText(
-    `http://localhost:6060/files/${username}/${fileName}`
-  );
+  let anchor = document.createElement("a");
+  anchor.href = url;
+  anchor.download = fileName;
+  document.body.appendChild(anchor);
+  anchor.click();
+  anchor.remove();
+}
+
+async function copyFileLink(url) {
+  removeFileOptionWindow();
+  await navigator.clipboard.writeText(url);
   alertMessage("Link copied to clipboard", "successAlert");
 }
 

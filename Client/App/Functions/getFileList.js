@@ -8,7 +8,6 @@ async function getFileList() {
   let files = await fileListReq.json();
   let usedSpaceReq = await fetch("/account/getSpaceUsed");
   let usedSpaceRes = await usedSpaceReq.json();
-  let username = usedSpaceRes.username;
   let allocatedSpaceReq = await fetch("/account/getAllocatedSpace");
   let allocatedSpaceRes = await allocatedSpaceReq.text();
   let usedSpaceBytes = usedSpaceRes.usedSpace;
@@ -19,6 +18,7 @@ async function getFileList() {
     loader.remove();
     document.querySelector(".fileList").innerHTML = "";
     files.forEach((file) => {
+      let url = file.url;
       let formattedFileSize = formatSize(file.size);
       let div = document.createElement("div");
       div.classList.add("file");
@@ -35,7 +35,7 @@ async function getFileList() {
       div.appendChild(fileNameElement);
       fileList.appendChild(div);
       fileOptionsImg.addEventListener("click", () => {
-        fileOptions(file.fileName, fileNameElement, username);
+        fileOptions(file.fileName, fileNameElement, url);
       });
     });
   } else {

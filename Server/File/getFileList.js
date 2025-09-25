@@ -1,5 +1,6 @@
 const fs = require("fs");
 const path = require("path");
+const { port } = require("../server.js");
 async function getFileList(req, res) {
   let username = req.username;
   let folderPath = path.join(__dirname, `../../Files/${username}`);
@@ -14,6 +15,7 @@ async function getFileList(req, res) {
         fileName: file,
         ctime: ctime,
         size: size,
+        url: `http://localhost:${port}/files/${username}/${file}`,
       };
       fileArray.push(obj);
     });

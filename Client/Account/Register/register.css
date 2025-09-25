@@ -15,8 +15,8 @@ input {
   display: flex;
   color: var(--magenta);
   align-items: center;
-  margin-top: -12%;
-  margin-left: 7%;
+  margin-top: -8%;
+  margin-left: 13%;
 }
 .acknowledgements span {
   margin-top: -0.9%;
@@ -27,4 +27,6 @@ input {
 }
 #acknowledgements {
   outline: none;
+  height: 15px;
+  width: 15px;
 }

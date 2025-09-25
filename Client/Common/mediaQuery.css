@@ -30,4 +30,10 @@
   .confirm input {
     width: 300px;
   }
+  .credentialsInputFields input {
+    width: 300px;
+  }
+  #newUser {
+    margin-right: 50px;
+  }
 }
