@@ -2,12 +2,8 @@ const { execSync } = require("child_process");
 const fs = require("fs");
 const path = require("path");
 function diskMountMiddleware(req, res, next) {
-  let mountStatus = mountDisk();
-  if (mountStatus === "mounted") {
-    next();
-  } else {
-    console.log(mountStatus);
-  }
+  mountDisk();
+  next();
 }
 function mountDisk() {
   try {
@@ -16,7 +12,12 @@ function mountDisk() {
     let mountCmd = execSync(`bash ${mountScript} ${mountPath}`, {
       encoding: "ascii",
     });
-    return mountCmd.trim();
+    let output = mountCmd.trim();
+    if (Number.parseInt(output) === 0 || output.endsWith("0")) {
+      return output;
+    } else {
+      process.exit(1);
+    }
   } catch (e) {
     console.log(e);
   }
