@@ -57,8 +57,8 @@ async function fileOptions(fileName, fileNameElement, url) {
     downloadFile(url, fileName, downloadFileDiv);
   });
 
-  copyLinkOptionDiv.addEventListener("click", () => {
-    copyFileLink(url);
+  copyLinkOptionDiv.addEventListener("click", (event) => {
+    copyFileLink(url, event);
   });
 
   renameFileDiv.addEventListener("click", () => {
@@ -70,7 +70,7 @@ async function fileOptions(fileName, fileNameElement, url) {
   });
 }
 
-function downloadFile(url, fileName, downloadFileDiv) {
+function downloadFile(url, fileName) {
   removeFileOptionWindow();
   let anchor = document.createElement("a");
   anchor.href = url;
@@ -80,9 +80,10 @@ function downloadFile(url, fileName, downloadFileDiv) {
   anchor.remove();
 }
 
-async function copyFileLink(url) {
+async function copyFileLink(url, event) {
   removeFileOptionWindow();
-  await navigator.clipboard.writeText(url);
+  let textToCopy = event.ctrlKey ? `https://embeds.video/${url}` : url;
+  await navigator.clipboard.writeText(textToCopy);
   alertMessage("Link copied to clipboard", "successAlert");
 }
 
