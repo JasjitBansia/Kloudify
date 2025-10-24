@@ -55,6 +55,7 @@ app.get("/files/:username/:filename", (req, res) => {
   let filePath = path.join(__dirname, `../Files/${username}/${filename}`);
   let fileExists = fs.existsSync(filePath);
   if (fileExists === true) {
+    res.set("Content-Disposition", `attachment; filename="${filename}"`);
     res.sendFile(filePath);
   } else {
     res.send({ error: "Requested file does not exist" });

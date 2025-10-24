@@ -1,10 +1,19 @@
 let logOut = document.querySelector("#logout");
 let fileInput = document.querySelector("#fileInput");
 let uploadActions = document.querySelector(".uploadActions");
+let urlInitial = "https://kloudify.host/Assets/";
 window.onload = async function () {
   await fetch("/account/pingUser", { method: "POST" });
   sessionStorage.setItem("isUploading", "false");
   getFileList();
+  function preloadImage(url) {
+    let img = new Image();
+    img.src = url;
+  }
+  let preloadingImages = ["copy.png", "delete.png", "hamburger.png", "rename.png", "download.png"];
+  for (let i = 0; i <= preloadingImages.length - 1; i++) {
+    preloadImage(urlInitial + preloadingImages[i]);
+  }
 };
 logOut.addEventListener("click", async () => {
   try {
