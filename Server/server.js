@@ -6,6 +6,7 @@ const port = 6060;
 module.exports = { port };
 const path = require("path");
 const fs = require("fs");
+const mime = require("mime-types");
 const accountRoutes = require("./Routes/accountRoutes");
 const fileRoutes = require("./Routes/fileRoutes.js");
 const { authMiddleware } = require("./Middleware/authMiddleware.js");
@@ -55,8 +56,14 @@ app.get("/files/:username/:filename", (req, res) => {
   let filePath = path.join(__dirname, `../Files/${username}/${filename}`);
   let fileExists = fs.existsSync(filePath);
   if (fileExists === true) {
-    res.set("Content-Disposition", `attachment; filename="${filename}"`);
-    res.sendFile(filePath);
+    let type = mime.lookup(filename);
+    if (type !== "image/png" && type !== "image/jpeg" && type !== "image/webp") {
+      res.set("Content-Disposition", `attachment; filename="${filename}"`);
+      res.sendFile(filePath);
+    }
+    else {
+      res.sendFile(filePath);
+    }
   } else {
     res.send({ error: "Requested file does not exist" });
   }
