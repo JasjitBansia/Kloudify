@@ -34,6 +34,7 @@ function formValidation() {
 }
 
 buttonElement.addEventListener("click", async function () {
+  buttonElement.disabled = true;
   let formStatus = formValidation();
   if (formStatus) {
     let req = await fetch("/account/register", {
@@ -49,17 +50,22 @@ buttonElement.addEventListener("click", async function () {
     let res = await req.text();
     if (req.status === 200) {
       alertMessage(res, "successAlert");
-      buttonElement.disabled = true;
       setTimeout(() => {
         window.location.href = "/app";
       }, 2000);
     } else if (req.status === 409) {
+      buttonElement.disabled = false;
       alertMessage(res, "alert");
     } else if (req.status === 403) {
+      buttonElement.disabled = false;
       alertMessage(res, "alert");
     } else {
+      buttonElement.disabled = false;
       alertMessage("Server error", "alert");
       console.log(res);
     }
+  }
+  else {
+    buttonElement.disabled = false;
   }
 });
