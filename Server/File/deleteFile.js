@@ -1,6 +1,6 @@
 const fs = require("fs");
 const path = require("path");
-const { exec } = require("child_process");
+const { execFile } = require("child_process");
 let shreddingState = { shredding: false };
 async function deleteFile(req, res) {
   let fileName = req.headers.filename;
