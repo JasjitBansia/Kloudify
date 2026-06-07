@@ -14,7 +14,7 @@ async function deleteFile(req, res) {
       return res.status(200).send("Deleted");
     } else if (deletionType === "shred") {
       shreddingState.shredding = true;
-      exec(`bash ${scriptPath} ${filePath}`, (err, stdout, stderr) => {
+      execFile(`bash ${scriptPath} ${filePath}`, (err, stdout, stderr) => {
         if (err) {
           shreddingState.shredding = false;
           return res.status(500).send("Error");
